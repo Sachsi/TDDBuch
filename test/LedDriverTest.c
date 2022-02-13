@@ -59,8 +59,3 @@ TEST(LedDriver, TurnOff_LedOne)
     LedDriver_LedOff(1);
     TEST_ASSERT_EQUAL_HEX16(0x00, virtualLeds);
 }
-
-TEST(LedDriver, Test_GitHub)
-{
-    
-}
