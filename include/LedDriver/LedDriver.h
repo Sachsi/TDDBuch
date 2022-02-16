@@ -28,8 +28,8 @@
 #define D_LedDriver_H
 
 void LedDriver_Create(uint16_t * address);
-void LedDriver_LedOn(uint16_t number);
-void LedDriver_LedOff(uint16_t number);
+void LedDriver_LedOn(int number);
+void LedDriver_LedOff(int number);
 void LedDriver_Destroy(void);
 
 #endif  /* D_LedDriver_H */

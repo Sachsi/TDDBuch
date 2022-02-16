@@ -31,4 +31,5 @@ TEST_GROUP_RUNNER(LedDriver)
     RUN_TEST_CASE(LedDriver, LedDriver_CreateOff);
     RUN_TEST_CASE(LedDriver, TurnOn_LedOne);
     RUN_TEST_CASE(LedDriver, TurnOff_LedOne);
+    RUN_TEST_CASE(LedDriver, TurnOnMultipleLeds);
 }

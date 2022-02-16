@@ -30,18 +30,18 @@
 
 static uint16_t * ledaddress;
 
-void LedDriver_Create(uint16_t * address)
+void LedDriver_Create(uint16_t* address)
 {
     ledaddress = address;
     *ledaddress = 0;
 }
 
-void LedDriver_LedOn(uint16_t number)
+void LedDriver_LedOn(int number)
 {
-    *ledaddress = 0x01;
+    *ledaddress |= (uint16_t)(1 << (number -1));
 }
 
-void LedDriver_LedOff(uint16_t numbert)
+void LedDriver_LedOff(int numbert)
 {
     *ledaddress = 0x00;
 }

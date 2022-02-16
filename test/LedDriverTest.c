@@ -35,7 +35,7 @@ static uint16_t virtualLeds;
 
 TEST_SETUP(LedDriver)
 {
-    virtualLeds = 0xffff;
+    LedDriver_Create(&virtualLeds);
 }
 
 TEST_TEAR_DOWN(LedDriver)
@@ -44,6 +44,7 @@ TEST_TEAR_DOWN(LedDriver)
 
 TEST(LedDriver, LedDriver_CreateOff)
 {
+    virtualLeds = 0xffff;
     LedDriver_Create(&virtualLeds);
     TEST_ASSERT_EQUAL_HEX16(0x00, virtualLeds);
 }
@@ -56,6 +57,14 @@ TEST(LedDriver, TurnOn_LedOne)
 
 TEST(LedDriver, TurnOff_LedOne)
 {
+    LedDriver_LedOn(1);
     LedDriver_LedOff(1);
     TEST_ASSERT_EQUAL_HEX16(0x00, virtualLeds);
+}
+
+TEST(LedDriver, TurnOnMultipleLeds)
+{
+    LedDriver_LedOn(8);
+    LedDriver_LedOn(9);
+    TEST_ASSERT_EQUAL_HEX16(0x180, virtualLeds);
 }
