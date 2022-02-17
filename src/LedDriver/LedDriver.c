@@ -28,6 +28,21 @@
 #include <stdlib.h>
 #include <memory.h>
 
+//--- enum decleration ---------
+enum {
+    ALL_LED_OFF = 0, 
+    ALL_LED_ON = ~ALL_LED_OFF
+    };
+
+//--- local Function prototypes ---
+static uint16_t convertLedNumbertoBitPosition(int number);
+
+//could be declared as inline function as well
+static uint16_t convertLedNumbertoBitPosition(int number)
+{
+    return ((uint16_t)(1 << (number -1)));
+}
+
 static uint16_t * ledaddress;
 
 void LedDriver_Create(uint16_t* address)
@@ -38,16 +53,21 @@ void LedDriver_Create(uint16_t* address)
 
 void LedDriver_LedOn(int number)
 {
-    *ledaddress |= (uint16_t)(1 << (number -1));
+    *ledaddress |= convertLedNumbertoBitPosition(number);
 }
 
 void LedDriver_LedOff(int numbert)
 {
-    *ledaddress = 0x00;
+    *ledaddress &= (uint16_t)~(convertLedNumbertoBitPosition(numbert));
 }
 
 void LedDriver_Destroy(void)
 {
+}
+
+void LedDriver_TurnOnAll(void)
+{
+    *ledaddress = (uint16_t)ALL_LED_ON;
 }
 
 
