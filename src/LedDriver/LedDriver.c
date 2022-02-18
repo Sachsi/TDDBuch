@@ -35,10 +35,10 @@ enum {
     };
 
 //--- local Function prototypes ---
-static uint16_t convertLedNumbertoBitPosition(int number);
+static uint16_t convertNumberToBitPosition(int number);
 
 //could be declared as inline function as well
-static uint16_t convertLedNumbertoBitPosition(int number)
+static uint16_t convertNumberToBitPosition(int number)
 {
     return ((uint16_t)(1 << (number -1)));
 }
@@ -53,12 +53,12 @@ void LedDriver_Create(uint16_t* address)
 
 void LedDriver_LedOn(int number)
 {
-    *ledaddress |= convertLedNumbertoBitPosition(number);
+    *ledaddress |= convertNumberToBitPosition(number);
 }
 
 void LedDriver_LedOff(int numbert)
 {
-    *ledaddress &= (uint16_t)~(convertLedNumbertoBitPosition(numbert));
+    *ledaddress &= (uint16_t)~(convertNumberToBitPosition(numbert));
 }
 
 void LedDriver_Destroy(void)
