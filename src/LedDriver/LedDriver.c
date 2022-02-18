@@ -53,6 +53,11 @@ void LedDriver_LedOff(int numbert)
     *ledaddress = 0x00;
 }
 
+void LedDriver_LedAllOn(void)
+{
+    *ledaddress = 0xffff;
+}
+
 void LedDriver_Destroy(void)
 {
 }
