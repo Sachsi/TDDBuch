@@ -74,3 +74,10 @@ TEST(LedDriver, TurnAllOn)
     LedDriver_LedAllOn();
     TEST_ASSERT_EQUAL_HEX16(0xffff, virtualLeds);
 }
+
+TEST(LedDriver, TurnOffAnyLed)
+{
+    LedDriver_LedAllOn();
+    LedDriver_LedOff(7);
+    TEST_ASSERT_EQUAL_HEX16(0xffBf, virtualLeds);
+}
