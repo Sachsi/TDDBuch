@@ -48,9 +48,9 @@ void LedDriver_LedOn(int number)
     *ledaddress |= convertNumberToBitPosition(number);
 }
 
-void LedDriver_LedOff(int numbert)
+void LedDriver_LedOff(int number)
 {
-    *ledaddress = 0x00;
+    *ledaddress &= (uint16_t)~convertNumberToBitPosition(number);
 }
 
 void LedDriver_LedAllOn(void)
