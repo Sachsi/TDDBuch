@@ -29,6 +29,13 @@
 #include <memory.h>
 
 static uint16_t * ledaddress;
+//--- Prototype function ----
+static uint16_t convertNumberToBitPosition(int number);
+
+static uint16_t convertNumberToBitPosition(int number)
+{
+    return (uint16_t)(1 << (number -1));
+}
 
 void LedDriver_Create(uint16_t* address)
 {
@@ -38,7 +45,7 @@ void LedDriver_Create(uint16_t* address)
 
 void LedDriver_LedOn(int number)
 {
-    *ledaddress |= (uint16_t)(1 << (number -1));
+    *ledaddress |= convertNumberToBitPosition(number);
 }
 
 void LedDriver_LedOff(int numbert)
