@@ -76,15 +76,15 @@ TEST(LedDriver, TurnOnMultipleLeds)
     TEST_ASSERT_EQUAL_HEX16(0x180, virtualLeds);
 }
 
-TEST(LedDriver, TurnOffAnyLed)
-{
-    LedDriver_TurnOnAll();
-    LedDriver_LedOff(8);
-    TEST_ASSERT_EQUAL_HEX16(0xff7f, virtualLeds);
-}
-
 TEST(LedDriver, TurnOnAllLeds)
 {
-    LedDriver_TurnOnAll();
+    LedDriver_LedAllOn();
     TEST_ASSERT_EQUAL_HEX16(0xffff, virtualLeds);
+}
+
+TEST(LedDriver, TurnOffAnyLed)
+{
+    LedDriver_LedAllOn();
+    LedDriver_LedOff(7);
+    TEST_ASSERT_EQUAL_HEX16(0xffBf, virtualLeds);
 }
