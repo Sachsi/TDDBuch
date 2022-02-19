@@ -36,6 +36,7 @@ enum
 };
 
 static uint16_t * ledaddress;
+static uint16_t ledImage;
 
 //--- Prototype function ----
 static uint16_t convertNumberToBitPosition(int number);
@@ -49,31 +50,35 @@ static uint16_t convertNumberToBitPosition(int number)
 void LedDriver_Create(uint16_t* address)
 {
     ledaddress = address;
-    *ledaddress = ALL_LED_OFF;
+    ledImage = ALL_LED_OFF;
+    LedDriver_UpdateHardare();
 }
 
 void LedDriver_LedOn(int number)
 {
-    *ledaddress |= convertNumberToBitPosition(number);
+    ledImage |= convertNumberToBitPosition(number);
+    LedDriver_UpdateHardare();
 }
 
 void LedDriver_LedOff(int number)
 {
-    *ledaddress &= (uint16_t)~convertNumberToBitPosition(number);
+    ledImage &= (uint16_t)~convertNumberToBitPosition(number);
+    LedDriver_UpdateHardare();
 }
 
-void LedDriver_LedAllOn(void)
+void LedDriver_LedOnAll(void)
 {
-    *ledaddress = ALL_LED_ON;
+    ledImage = (uint16_t)ALL_LED_ON;
+    LedDriver_UpdateHardare();
+}
+
+void LedDriver_UpdateHardare(void)
+{
+    *ledaddress = ledImage;
 }
 
 void LedDriver_Destroy(void)
 {
-}
 
-void LedDriver_TurnOnAll(void)
-{
-    *ledaddress = (uint16_t)ALL_LED_ON;
 }
-
 
