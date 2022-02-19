@@ -88,3 +88,10 @@ TEST(LedDriver, TurnOffAnyLed)
     LedDriver_LedOff(7);
     TEST_ASSERT_EQUAL_HEX16(0xffBf, virtualLeds);
 }
+
+TEST(LedDriver, LowerUpperBounderyCheck)
+{
+    LedDriver_LedOn(1);
+    LedDriver_LedOn(16);
+    TEST_ASSERT_EQUAL_HEX16(0x8001, virtualLeds);
+}
