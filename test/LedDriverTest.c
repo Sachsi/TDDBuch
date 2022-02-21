@@ -95,3 +95,17 @@ TEST(LedDriver, LowerUpperBounderyCheck)
     LedDriver_LedOn(16);
     TEST_ASSERT_EQUAL_HEX16(0x8001, virtualLeds);
 }
+
+TEST(LedDriver, OutOfBoundsChangeNothing)
+{
+    LedDriver_LedOn(-1);
+    TEST_ASSERT_EQUAL_HEX16(0, virtualLeds);
+    LedDriver_LedOn(0);
+    TEST_ASSERT_EQUAL_HEX16(0, virtualLeds);
+    LedDriver_LedOn(17);
+    TEST_ASSERT_EQUAL_HEX16(0, virtualLeds);
+    LedDriver_LedOn(33);
+    TEST_ASSERT_EQUAL_HEX16(0, virtualLeds);
+    LedDriver_LedOn(2564);
+    TEST_ASSERT_EQUAL_HEX16(0, virtualLeds);
+}
