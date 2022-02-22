@@ -36,5 +36,6 @@ TEST_GROUP_RUNNER(LedDriver)
     RUN_TEST_CASE(LedDriver, TurnOnAllLeds);
     RUN_TEST_CASE(LedDriver, LedMemoryIsNotReadable);
     RUN_TEST_CASE(LedDriver, LowerUpperBounderyCheck);
-    RUN_TEST_CASE(LedDriver, OutOfBoundsChangeNothing);
+    RUN_TEST_CASE(LedDriver, OutOfBoundsChangeOnNothing);
+    RUN_TEST_CASE(LedDriver, OutOfBoundsChangeOffNothing);
 }
