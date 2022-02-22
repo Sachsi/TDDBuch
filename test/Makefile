@@ -10,12 +10,14 @@ SRC = ../Unity/extras/fixture/src/unity_fixture.c \
       #unity_fixture_Test.c   \
       #unity_fixture_TestRunner.c \
       main/AllTests.c
-PATH_PROG = ../src/LedDriver/LedDriver.c
+PATH_PROG = ../src/LedDriver/LedDriver.c \
+			../src/Error/RuntimeErrorStub.c
+
 PATH_TEST = ./LedDriverTest.c ./LedDriverTestRunner.c ./main/AllTests.c
 SRC += $(PATH_TEST)
 SRC += $(PATH_PROG)
 
-INC_PROG_DIR = -I../include/LedDriver
+INC_PROG_DIR = -I../include/LedDriver -I../include/Error
 INC_DIR = -I../Unity/src -I../Unity/extras/fixture/src
 INC_DIR += $(INC_PROG_DIR)
 

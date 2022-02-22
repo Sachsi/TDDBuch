@@ -10,6 +10,8 @@
  */
 
 #include "RuntimeErrorStub.h"
+#include "RuntimeError.h"
+
 static const char *message = "No Error";
 static int parameter = -1;
 static const char *file = 0;
