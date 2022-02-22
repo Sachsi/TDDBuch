@@ -14,7 +14,7 @@
 
 void RuntimeError(const char *message, int parameter, const char *file, int line);
 
-#define RUNIME_ERROR(description, parameter)\
+#define RUNTIME_ERROR(description, parameter)\
     RuntimeError(description, parameter, __FILE__, __LINE__)
 
 #endif 

@@ -25,6 +25,7 @@
 /*- ------------------------------------------------------------------ -*/
 #include <stdint.h>
 #include "LedDriver.h"
+#include "RuntimeError.h"
 #include <stdlib.h>
 #include <memory.h>
 
@@ -57,7 +58,10 @@ void LedDriver_Create(uint16_t* address)
 void LedDriver_LedOn(int number)
 {
     if(( number <= 0) || (number > 16))
+    {
+        RUNTIME_ERROR("LED Driver: out-of-bounds LED", number);
         return;
+    }
 
     ledImage |= convertNumberToBitPosition(number);
     LedDriver_UpdateHardare();
@@ -66,8 +70,10 @@ void LedDriver_LedOn(int number)
 void LedDriver_LedOff(int number)
 {
     if(( number <= 0) || (number > 16))
+    {
+        RUNTIME_ERROR("LED Driver: out-of-bounds LED", number);
         return;
-        
+    }   
     ledImage &= (uint16_t)~convertNumberToBitPosition(number);
     LedDriver_UpdateHardare();
 }

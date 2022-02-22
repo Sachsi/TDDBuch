@@ -38,4 +38,5 @@ TEST_GROUP_RUNNER(LedDriver)
     RUN_TEST_CASE(LedDriver, LowerUpperBounderyCheck);
     RUN_TEST_CASE(LedDriver, OutOfBoundsChangeOnNothing);
     RUN_TEST_CASE(LedDriver, OutOfBoundsChangeOffNothing);
+    RUN_TEST_CASE(LedDriver, OutOfBoundsProducesRuntimeError);
 }
