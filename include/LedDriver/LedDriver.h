@@ -26,6 +26,8 @@
 
 #ifndef D_LedDriver_H
 #define D_LedDriver_H
+#include <stdint.h>
+#include <stdbool.h>
 
 void LedDriver_Create(uint16_t * address);
 void LedDriver_LedOn(int number);
@@ -33,4 +35,5 @@ void LedDriver_LedOff(int number);
 void LedDriver_Destroy(void);
 void LedDriver_LedOnAll(void);
 void LedDriver_UpdateHardare(void);
+bool LedDriver_IsOn(int number);
 #endif  /* D_LedDriver_H */

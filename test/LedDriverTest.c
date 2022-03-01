@@ -130,3 +130,10 @@ TEST(LedDriver, OutOfBoundsProducesRuntimeError)
                              RuntimeErrorStub_GetLastError());
     TEST_ASSERT_EQUAL(-1, RuntimeErrorStub_GetLastParameter());
 }
+
+TEST(LedDriver, IsOn)
+{
+    TEST_ASSERT_FALSE(LedDriver_IsOn(11));
+    LedDriver_LedOn(11);
+    TEST_ASSERT_TRUE(LedDriver_IsOn(11));
+}

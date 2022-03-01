@@ -23,8 +23,7 @@
 /*-                                                                    -*/
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
-#include <stdint.h>
-#include <stdbool.h>
+
 #include "LedDriver.h"
 #include "RuntimeError.h"
 #include <stdlib.h>
@@ -136,6 +135,17 @@ void LedDriver_LedOnAll(void)
 void LedDriver_UpdateHardare(void)
 {
     *ledaddress = ledImage;
+}
+/**
+ * @brief 
+ * 
+ * @param number 
+ * @return true 
+ * @return false 
+ */
+bool LedDriver_IsOn(int number)
+{
+    return ledImage & (convertNumberToBitPosition(number));
 }
 /**
  * @brief 
