@@ -24,6 +24,7 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 #include <stdint.h>
+#include <stdbool.h>
 #include "LedDriver.h"
 #include "RuntimeError.h"
 #include <stdlib.h>
@@ -41,54 +42,105 @@ static uint16_t ledImage;
 
 //--- Prototype function ----
 static uint16_t convertNumberToBitPosition(int number);
-
+static void setLedImageBit(int number);
+static void clearLedImageBit(int number);
+static bool IsLedOutOfBoundery(int number);
 //could be declared as inline function as well
 static uint16_t convertNumberToBitPosition(int number)
 {
     return ((uint16_t)(1 << (number -1)));
 }
-
+/**
+ * @brief Set the Led Image Bit object
+ * 
+ * @param number Bit position of LED
+ */
+static void setLedImageBit(int number)
+{
+    ledImage |= convertNumberToBitPosition(number);
+}
+/**
+ * @brief clear led image bit position
+ * 
+ * @param number led bit position
+ */
+static void clearLedImageBit(int number)
+{
+    ledImage &= (uint16_t)~convertNumberToBitPosition(number);
+}
+/**
+ * @brief test if number out of 16bit boundery
+ * 
+ * @param number Led Bit position
+ * @return true position is out of boundery
+ * @return false position is okay
+ */
+static bool IsLedOutOfBoundery(int number)
+{
+    return (number <= 0 || number > 16);
+}
+/**
+ * @brief 
+ * 
+ * @param address 
+ */
 void LedDriver_Create(uint16_t* address)
 {
     ledaddress = address;
     ledImage = ALL_LED_OFF;
     LedDriver_UpdateHardare();
 }
-
+/**
+ * @brief 
+ * 
+ * @param number 
+ */
 void LedDriver_LedOn(int number)
 {
-    if(( number <= 0) || (number > 16))
+    if(IsLedOutOfBoundery(number))
     {
         RUNTIME_ERROR("LED Driver: out-of-bounds LED", number);
         return;
     }
-
-    ledImage |= convertNumberToBitPosition(number);
+    setLedImageBit(number);
     LedDriver_UpdateHardare();
 }
-
+/**
+ * @brief 
+ * 
+ * @param number 
+ */
 void LedDriver_LedOff(int number)
 {
-    if(( number <= 0) || (number > 16))
+    if(IsLedOutOfBoundery(number))
     {
         RUNTIME_ERROR("LED Driver: out-of-bounds LED", number);
         return;
     }   
-    ledImage &= (uint16_t)~convertNumberToBitPosition(number);
+    clearLedImageBit(number);
     LedDriver_UpdateHardare();
 }
-
+/**
+ * @brief 
+ * 
+ */
 void LedDriver_LedOnAll(void)
 {
     ledImage = (uint16_t)ALL_LED_ON;
     LedDriver_UpdateHardare();
 }
-
+/**
+ * @brief 
+ * 
+ */
 void LedDriver_UpdateHardare(void)
 {
     *ledaddress = ledImage;
 }
-
+/**
+ * @brief 
+ * 
+ */
 void LedDriver_Destroy(void)
 {
 
