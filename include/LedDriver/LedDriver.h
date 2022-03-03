@@ -36,4 +36,5 @@ void LedDriver_Destroy(void);
 void LedDriver_LedOnAll(void);
 void LedDriver_UpdateHardare(void);
 bool LedDriver_IsOn(int number);
+bool LedDriver_IsOff(int number);
 #endif  /* D_LedDriver_H */

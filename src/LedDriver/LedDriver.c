@@ -145,7 +145,14 @@ void LedDriver_UpdateHardare(void)
  */
 bool LedDriver_IsOn(int number)
 {
+    if(IsLedOutOfBoundery(number))
+        return false;
     return ledImage & (convertNumberToBitPosition(number));
+}
+
+bool LedDriver_IsOff(int number)
+{
+    return !LedDriver_IsOn(number);
 }
 /**
  * @brief 
