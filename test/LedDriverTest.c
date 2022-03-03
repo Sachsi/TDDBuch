@@ -152,3 +152,18 @@ TEST(LedDriver, IsOff)
     LedDriver_LedOn(12);
     TEST_ASSERT_FALSE(LedDriver_IsOff(12));
 }
+
+TEST(LedDriver, TurnOffMultipleLeds)
+{
+    LedDriver_LedOnAll();
+    LedDriver_LedOff(9);
+    LedDriver_LedOff(8);
+    TEST_ASSERT_EQUAL_HEX16((~0x180) & 0xffff, virtualLeds);
+}
+
+TEST(LedDriver, AllOff)
+{
+    LedDriver_LedOnAll();
+    LedDriver_LedOffAll();
+    TEST_ASSERT_EQUAL_HEX(0, virtualLeds);
+}

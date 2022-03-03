@@ -128,6 +128,12 @@ void LedDriver_LedOnAll(void)
     ledImage = (uint16_t)ALL_LED_ON;
     LedDriver_UpdateHardare();
 }
+
+void LedDriver_LedOffAll(void)
+{
+    ledImage = ALL_LED_OFF;
+    LedDriver_UpdateHardare();
+}
 /**
  * @brief 
  * 
